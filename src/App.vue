@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <GeneralFilter> </GeneralFilter>
+    <GeneralFilter></GeneralFilter>
     <router-view/>
   </div>
 </template>
@@ -19,9 +19,9 @@ export default {
 
 
 <style>
-
 * {
   box-sizing: border-box;
+  margin: 0;
 }
 
 #app {
