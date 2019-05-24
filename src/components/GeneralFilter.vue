@@ -2,8 +2,14 @@
   <div class="filter-wrapper">
     <div class="layout-column-left">
       <div class="layout-column-left buttons">
-        <button @click="selectedComponent = 'CurrencyTab'">CurrencyTab</button>
-        <button @click="selectedComponent = 'FamilyRiskTab'">FamilyRiskTab</button>
+        <button
+          @click="selectedComponent = 'CurrencyTab'"
+          class="dynamic-component-button"
+        >CurrencyTab</button>
+        <button
+          @click="selectedComponent = 'FamilyRiskTab'"
+          class="dynamic-component-button"
+        >FamilyRiskTab</button>
       </div>
     </div>
     <div class="layout-column-middle">
@@ -49,17 +55,32 @@ export default {
   justify-content: center;
 }
 
-.buttons{
+.buttons {
   width: 230px;
 }
 
-.layout-column-middle{
-  background-color: #F2F2F2;
+.layout-column-left {
+  display: flex;
+  flex-direction: column;
 }
 
-.layout-column-right{
+.layout-column-middle {
+  background-color: #f2f2f2;
+}
+
+.layout-column-right {
   width: 100%;
 }
+
+.layout-column-left.buttons {
+  height: 30%;
+  display: flex;
+  justify-content: space-around;
+}
+
+/* .dynamic-component-button{
+  margin-top: 100px;
+} */
 </style>
 
 
