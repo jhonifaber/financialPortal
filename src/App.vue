@@ -1,16 +1,18 @@
 <template>
   <div id="app">
-    <Home/>
+    <GeneralFilter> </GeneralFilter>
     <router-view/>
   </div>
 </template>
 
 <script>
-import Home from "./components/Home";
+import GeneralFilter from "./components/GeneralFilter";
+import CurrencyTab from "./components/CurrencyTab";
 
 export default {
   components: {
-    Home
+    GeneralFilter,
+    CurrencyTab
   }
 };
 </script>
