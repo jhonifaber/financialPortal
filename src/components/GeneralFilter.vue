@@ -77,10 +77,6 @@ export default {
   display: flex;
   justify-content: space-around;
 }
-
-/* .dynamic-component-button{
-  margin-top: 100px;
-} */
 </style>
 
 

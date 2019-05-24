@@ -1,7 +1,10 @@
 <template>
   <div class="currency-tab-wrapper">
     <ul>
-      <li v-for="currency in listOfCurrencies" :key="currency.id">{{currency.id}}</li>
+      <li> All </li> 
+      <li> EUR </li> 
+      <li> JPY </li> 
+      <li> USD </li> 
     </ul>
   </div>
 </template>
@@ -10,12 +13,7 @@
 export default {
   data() {
     return {
-      listOfCurrencies: [
-        { name: "All", id: "All" },
-        { name: "Euro", id: "EUR" },
-        { name: "Japanese yen", id: "JPY" },
-        { name: "Dollar", id: "USD" }
-      ]
+      
     };
   }
 };
