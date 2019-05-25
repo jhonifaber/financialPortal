@@ -1,10 +1,10 @@
 <template>
   <div class="asset-wrapper">
-    <a href="#" class="asset-name">{{assetValue.name}}</a>
-    <a href="#" class="asset-data">
+    <a class="asset-name">{{assetValue.name}}</a>
+    <a href="" class="asset-data">
       <div class="asset-data-currency">
         <span class="type">
-          <i class="fas fa-dollar-sign"></i>
+          <i id="aa" class="fas fa-dollar-sign"></i>
           {{currency_text}}
         </span>&nbsp;
         <span>{{assetValue.currency}}</span>
@@ -15,7 +15,7 @@
           <i class="fas fa-hard-hat"></i>
           {{family_text}}
         </span>&nbsp;
-        <span class="family-risk-value">{{assetValue.risk_family}}</span>
+        <span id="family-risk-value">{{assetValue.risk_family}}</span>
       </div>
     </a>
   </div>
@@ -70,6 +70,13 @@ export default {
   background-color: #02b5c4;
 }
 
+.asset-data:hover .asset-data-family span.type,
+.asset-data:hover .asset-data-currency span.type,
+.asset-data:hover .asset-data-family span.type i.fas,
+.asset-data:hover .asset-data-currency span.type i.fas {
+  color: white;
+}
+
 span.type {
   color: #909090;
   font-weight: bold;
@@ -90,7 +97,7 @@ span.type {
   margin-right: 6px;
 }
 
-.family-risk-value{
+#family-risk-value {
   margin-left: 10px;
 }
 </style>

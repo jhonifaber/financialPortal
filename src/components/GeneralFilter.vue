@@ -9,7 +9,7 @@
           <i class="fas fa-dollar-sign"></i>
           <p @click="selectedComponent = 'CurrencyTab'" class="dynamic-component-button">Currency</p>
         </span>
-        <span class="family-risk-group">
+        <span>
           <i class="fas fa-hard-hat"></i>
           <p
             @click="selectedComponent = 'FamilyRiskTab'"
@@ -107,8 +107,12 @@ p {
   font-weight: bold;
 }
 
-p:hover {
+span:hover p {
   color: #828282;
+}
+
+span:hover i.fas{
+  color: #02b5c4;
 }
 
 .logo {
@@ -121,10 +125,6 @@ i.fas.fa-hard-hat {
   display: flex;
   align-items: center;
   color: #bdbdbd;
-}
-
-.family-risk-group {
-  color: #828282;
 }
 
 i.fas.fa-dollar-sign {
