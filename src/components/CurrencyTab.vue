@@ -69,5 +69,7 @@ li {
 
 span {
   width: 20px;
+  font-weight: bold;
+  color: #828282;
 }
 </style>

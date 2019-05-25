@@ -1,15 +1,21 @@
 <template>
   <div class="filter-wrapper">
     <div class="layout-column-left">
+      <div class="logo">
+        <img :src="logo" width="100px">
+      </div>
       <div class="layout-column-left buttons">
-        <button
-          @click="selectedComponent = 'CurrencyTab'"
-          class="dynamic-component-button"
-        >CurrencyTab</button>
-        <button
-          @click="selectedComponent = 'FamilyRiskTab'"
-          class="dynamic-component-button"
-        >FamilyRiskTab</button>
+        <span>
+          <i class="fas fa-dollar-sign"></i>
+          <p @click="selectedComponent = 'CurrencyTab'" class="dynamic-component-button">Currency</p>
+        </span>
+        <span class="family-risk-group">
+          <i class="fas fa-hard-hat"></i>
+          <p
+            @click="selectedComponent = 'FamilyRiskTab'"
+            class="dynamic-component-button"
+          >Family Risk</p>
+        </span>
       </div>
     </div>
     <div class="layout-column-middle">
@@ -31,7 +37,8 @@ import Funds from "./Funds";
 export default {
   data() {
     return {
-      selectedComponent: "CurrencyTab"
+      selectedComponent: "CurrencyTab",
+      logo: require("./../assets/logo.png")
     };
   },
   components: {
@@ -76,6 +83,54 @@ export default {
   height: 30%;
   display: flex;
   justify-content: space-around;
+  position: relative;
+  bottom: 20px;
+}
+
+span {
+  display: flex;
+  flex-direction: row;
+  width: 60%;
+  justify-content: space-around;
+  cursor: pointer;
+  height: 60px;
+}
+
+.dynamic-component-button {
+  display: flex;
+  align-items: center;
+}
+
+p {
+  width: 90px;
+  color: #bdbdbd;
+  font-weight: bold;
+}
+
+p:hover {
+  color: #828282;
+}
+
+.logo {
+  position: relative;
+  bottom: 27%;
+  right: 20px;
+}
+
+i.fas.fa-hard-hat {
+  display: flex;
+  align-items: center;
+  color: #bdbdbd;
+}
+
+.family-risk-group {
+  color: #828282;
+}
+
+i.fas.fa-dollar-sign {
+  display: flex;
+  align-items: center;
+  color: #bdbdbd;
 }
 </style>
 
