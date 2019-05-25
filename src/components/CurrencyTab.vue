@@ -1,10 +1,10 @@
 <template>
   <div class="currency-tab-wrapper">
     <ul>
-      <li> All </li> 
-      <li> EUR </li> 
-      <li> JPY </li> 
-      <li> USD </li> 
+      <li v-for="currency in currencies" :key="currency.id">
+        <img :src="currency.icon" :alt="currency.name" width="20px">
+        <span>{{currency.id}}</span>
+      </li>
     </ul>
   </div>
 </template>
@@ -13,7 +13,28 @@
 export default {
   data() {
     return {
-      
+      currencies: [
+        {
+          name: "All Currencies",
+          id: "All",
+          icon: require("./../assets/world.svg")
+        },
+        {
+          name: "European flag",
+          id: "EUR",
+          icon: require("./../assets/european-flag.svg")
+        },
+        {
+          name: "Japanese flag",
+          id: "JPY",
+          icon: require("./../assets/japan-flag.png")
+        },
+        {
+          name: "American flag",
+          id: "USD",
+          icon: require("./../assets/united-states-flag.svg")
+        }
+      ]
     };
   }
 };
@@ -33,5 +54,20 @@ ul {
   display: flex;
   justify-content: space-around;
   flex-direction: column;
+  align-items: center;
+  position: relative;
+  right: 40px;
+}
+
+li {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  justify-content: space-around;
+  width: 25%;
+}
+
+span {
+  width: 20px;
 }
 </style>
