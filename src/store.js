@@ -129,7 +129,8 @@ export default new Vuex.Store({
         "currency": "USD",
         "risk_family": "Equity"
       }
-    ]
+    ],
+    selectedCurrency : 'All'
   },
   getters: {
     funds(state) {
@@ -137,13 +138,18 @@ export default new Vuex.Store({
     },
     filteredFunds(state) {
       return state.filteredFunds
+    },
+    selectedCurrency(state){
+      return state.selectedCurrency
     }
   },
   mutations: {
     saveFiltered(state, payload) {
       state.filteredFunds = payload
+    },
+    updateSelectedCurrency(state, payload){
+      state.selectedCurrency = payload
     }
-
   },
   actions: {
     async fetchFunds() {

@@ -6,8 +6,6 @@
         <span>{{currency.id}}</span>
       </li>
     </ul>
-    <!-- {{selectedCurrency}} -->
-    <!-- {{filtered}} -->
   </div>
 </template>
 
@@ -46,6 +44,8 @@ export default {
   },
   methods: {
     filterFunds(currenctCurrency) {
+      this.updateCurrentCurrency(currenctCurrency);
+
       if (currenctCurrency == "All") {
         this.$store.commit("saveFiltered", this.funds);
       } else {
@@ -54,6 +54,9 @@ export default {
         });
         this.$store.commit("saveFiltered", filteredAssets);
       }
+    },
+    updateCurrentCurrency(currency) {
+      this.$store.commit("updateSelectedCurrency", currency);
     }
   }
 };

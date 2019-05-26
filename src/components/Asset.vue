@@ -66,14 +66,18 @@ export default {
   justify-content: space-between;
 }
 
-.asset-data:hover {
+.asset-wrapper:hover .asset-data {
   background-color: #02b5c4;
 }
 
-.asset-data:hover .asset-data-family span.type,
-.asset-data:hover .asset-data-currency span.type,
-.asset-data:hover .asset-data-family span.type i.fas,
-.asset-data:hover .asset-data-currency span.type i.fas {
+.asset-wrapper:hover a.asset-name{
+  background-color:#e0e0e0
+}
+
+.asset-wrapper:hover .asset-data-family span.type,
+.asset-wrapper:hover .asset-data-currency span.type,
+.asset-wrapper:hover .asset-data-family span.type i.fas,
+.asset-wrapper:hover .asset-data-currency span.type i.fas {
   color: white;
 }
 
