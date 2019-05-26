@@ -130,7 +130,8 @@ export default new Vuex.Store({
         "risk_family": "Equity"
       }
     ],
-    selectedCurrency : 'All'
+    selectedCurrency : 'All',
+    selectedFamily : ' All'
   },
   getters: {
     funds(state) {

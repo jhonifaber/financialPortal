@@ -1,7 +1,7 @@
 <template>
   <div class="asset-wrapper">
     <a class="asset-name">{{assetValue.name}}</a>
-    <a href="" class="asset-data">
+    <a href="/information" class="asset-data">
       <div class="asset-data-currency">
         <span class="type">
           <i id="aa" class="fas fa-dollar-sign"></i>
@@ -70,8 +70,8 @@ export default {
   background-color: #02b5c4;
 }
 
-.asset-wrapper:hover a.asset-name{
-  background-color:#e0e0e0
+.asset-wrapper:hover a.asset-name {
+  background-color: #e0e0e0;
 }
 
 .asset-wrapper:hover .asset-data-family span.type,

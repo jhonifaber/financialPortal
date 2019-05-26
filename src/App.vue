@@ -1,12 +1,11 @@
 <template>
   <div id="app">
-    <GeneralFilter></GeneralFilter>
     <router-view/>
   </div>
 </template>
 
 <script>
-import GeneralFilter from "./components/GeneralFilter";
+import GeneralFilter from "./views/GeneralFilter";
 import CurrencyTab from "./components/CurrencyTab";
 
 export default {
@@ -15,8 +14,8 @@ export default {
     CurrencyTab
   },
   created() {
-    this.$store.dispatch('fetchFunds')
-  },
+    this.$store.dispatch("fetchFunds");
+  }
 };
 </script>
 
