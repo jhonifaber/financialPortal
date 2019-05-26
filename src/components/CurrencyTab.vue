@@ -1,15 +1,19 @@
 <template>
   <div class="currency-tab-wrapper">
     <ul>
-      <li v-for="currency in currencies" :key="currency.id">
+      <li v-for="currency in currencies" :key="currency.id" @click="filterFunds(currency.id)">
         <img :src="currency.icon" :alt="currency.name" width="20px">
         <span>{{currency.id}}</span>
       </li>
     </ul>
+    <!-- {{selectedCurrency}} -->
+    <!-- {{filtered}} -->
   </div>
 </template>
 
 <script>
+import { mapGetters } from "vuex";
+
 export default {
   data() {
     return {
@@ -36,6 +40,21 @@ export default {
         }
       ]
     };
+  },
+  computed: {
+    ...mapGetters(["funds"])
+  },
+  methods: {
+    filterFunds(currenctCurrency) {
+      if (currenctCurrency == "All") {
+        this.$store.commit("saveFiltered", this.funds);
+      } else {
+        let filteredAssets = this.funds.filter(fund => {
+          return fund.currency == currenctCurrency;
+        });
+        this.$store.commit("saveFiltered", filteredAssets);
+      }
+    }
   }
 };
 </script>

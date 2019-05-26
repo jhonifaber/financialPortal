@@ -41,6 +41,9 @@ export default {
       logo: require("./../assets/logo.png")
     };
   },
+  computed: {
+    filteredAssets() {}
+  },
   components: {
     CurrencyTab,
     FamilyRiskTab,
@@ -111,7 +114,7 @@ span:hover p {
   color: #828282;
 }
 
-span:hover i.fas{
+span:hover i.fas {
   color: #02b5c4;
 }
 

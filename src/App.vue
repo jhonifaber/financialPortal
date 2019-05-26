@@ -13,7 +13,10 @@ export default {
   components: {
     GeneralFilter,
     CurrencyTab
-  }
+  },
+  created() {
+    this.$store.dispatch('fetchFunds')
+  },
 };
 </script>
 
