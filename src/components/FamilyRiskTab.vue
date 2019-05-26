@@ -5,15 +5,15 @@
         <img :src="family.icon" :alt="family.name" width="20px">
         <span>{{family.id}}</span>
       </li>-->
-      <li>
+      <li @click='filterFunds("All")'>
         <img src="./../assets/world.svg" width="20px">
         <span>All</span>
       </li>
-      <li>
+      <li @click='filterFunds("Equity")'>
         <i class="fas fa-hard-hat equity"></i>
         <span>Equity</span>
       </li>
-      <li>
+      <li @click='filterFunds("Balanced")'>
         <i class="fas fa-hard-hat balanced"></i>
         <span>Balanced</span>
       </li>
@@ -23,27 +23,70 @@
 
 
 <script>
+import {mapGetters} from "vuex"
+
 export default {
   data() {
     return {
-      families: [
-        {
-          name: "All Currencies",
-          id: "All",
-          icon: require("./../assets/world.svg")
-        },
-        {
-          name: "Equity",
-          id: "Equity",
-          icon: require("./../assets/european-flag.svg")
-        },
-        {
-          name: "Balanced",
-          id: "Balanced",
-          icon: require("./../assets/japan-flag.png")
-        }
-      ]
+      // families: [
+      //   {
+      //     name: "All Currencies",
+      //     id: "All",
+      //     icon: require("./../assets/world.svg")
+      //   },
+      //   {
+      //     name: "Equity",
+      //     id: "Equity",
+      //     icon: require("./../assets/european-flag.svg")
+      //   },
+      //   {
+      //     name: "Balanced",
+      //     id: "Balanced",
+      //     icon: require(<i class="fas fa-hard-hat balanced"></i>)
+      //   }
+      // ]
     };
+  },
+  computed: {
+    ...mapGetters(['funds','selectedCurrency'])
+  },
+  methods: {
+    filterFunds(currentFamily) {
+      this.updateCurrentFamily(currentFamily);
+
+      if (this.checkIfbothAreFilteredByAll(currentFamily)) return ;
+
+      if( this.checkIfCurrentCurrencyIsAll(currentFamily))  return;
+      
+      if (currentFamily == "All") {
+        this.$store.commit("saveFiltered", this.funds);
+      } else {
+        let filteredAssets = this.funds.filter(fund => {
+          return fund.risk_family == currentFamily && fund.currency == this.selectedCurrency
+        });
+        this.$store.commit("saveFiltered", filteredAssets);
+      }
+    },
+    updateCurrentFamily(family) {
+      this.$store.commit("updateSelectedFamily", family);
+    },
+    checkIfCurrentCurrencyIsAll(family){
+      if(this.selectedCurrency == 'All'){
+        let filteredAssets = this.funds.filter(fund => {
+          return fund.risk_family == family
+        });
+        this.$store.commit("saveFiltered", filteredAssets);
+        return true
+      }
+      return false
+    },
+    checkIfbothAreFilteredByAll(currentFamily){
+      if (currentFamily == "All" && this.selectedCurrency == 'All'){
+        this.$store.commit("saveFiltered", this.funds)
+        return true;
+      }
+      return false
+    }
   }
 };
 </script>
@@ -81,12 +124,12 @@ span {
   color: #828282;
 }
 
-.fa-hard-hat.equity{
-  color:#eb5757;
+.fa-hard-hat.equity {
+  color: #eb5757;
 }
 
-.fa-hard-hat.balanced{
-  color:#27ae60;
+.fa-hard-hat.balanced {
+  color: #27ae60;
 }
 </style>
 

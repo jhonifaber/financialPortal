@@ -131,7 +131,7 @@ export default new Vuex.Store({
       }
     ],
     selectedCurrency : 'All',
-    selectedFamily : ' All'
+    selectedFamily : 'All'
   },
   getters: {
     funds(state) {
@@ -142,6 +142,9 @@ export default new Vuex.Store({
     },
     selectedCurrency(state){
       return state.selectedCurrency
+    },
+    selectedFamily(state){
+      return state.selectedFamily
     }
   },
   mutations: {
@@ -150,6 +153,9 @@ export default new Vuex.Store({
     },
     updateSelectedCurrency(state, payload){
       state.selectedCurrency = payload
+    },
+    updateSelectedFamily(state, payload){
+      state.selectedFamily = payload
     }
   },
   actions: {

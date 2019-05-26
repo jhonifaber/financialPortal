@@ -40,23 +40,47 @@ export default {
     };
   },
   computed: {
-    ...mapGetters(["funds"])
+    ...mapGetters(["funds", "selectedFamily"])
   },
   methods: {
-    filterFunds(currenctCurrency) {
-      this.updateCurrentCurrency(currenctCurrency);
+    filterFunds(currentCurrency) {
+      this.updateCurrentCurrency(currentCurrency);
 
-      if (currenctCurrency == "All") {
+      if (this.checkIfBothAreFilteredByAll(currentCurrency)) return;
+
+      if (this.checkIfCurrentFamilyIsAll(currentCurrency)) return;
+
+      if (currentCurrency == "All") {
         this.$store.commit("saveFiltered", this.funds);
       } else {
         let filteredAssets = this.funds.filter(fund => {
-          return fund.currency == currenctCurrency;
+          return (
+            fund.currency == currentCurrency &&
+            fund.risk_family == this.selectedFamily
+          );
         });
         this.$store.commit("saveFiltered", filteredAssets);
       }
     },
     updateCurrentCurrency(currency) {
       this.$store.commit("updateSelectedCurrency", currency);
+    },
+    checkIfCurrentFamilyIsAll(currentCurrency) {
+      if (this.selectedFamily == "All") {
+        let filteredAssets = this.funds.filter(fund => {
+          return fund.currency == currentCurrency;
+        });
+        this.$store.commit("saveFiltered", filteredAssets);
+        return true;
+      }
+      return false;
+    },
+    checkIfBothAreFilteredByAll(currentCurrency) {
+      if (currentCurrency == "All" && this.selectedFamily == "All") {
+        this.$store.commit("saveFiltered", this.funds);
+        return true;
+      }
+      return false;
     }
   }
 };

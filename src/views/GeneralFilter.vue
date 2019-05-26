@@ -9,7 +9,7 @@
           <i class="fas fa-dollar-sign"></i>
           <p @click="selectedComponent = 'CurrencyTab'" class="dynamic-component-button">Currency</p>
         </span>
-        <p id="currentItem"> {{selectedCurrency}}</p>
+        <p id="currentItem">{{selectedCurrency}}</p>
         <span>
           <i class="fas fa-hard-hat"></i>
           <p
@@ -17,12 +17,14 @@
             class="dynamic-component-button"
           >Family Risk</p>
         </span>
-        <p id="currentItem">Equity</p>
+        <p id="currentItem">{{selectedFamily}}</p>
       </div>
     </div>
     <div class="layout-column-middle">
       <div class="layout-column-middle buttons">
-        <component :is="selectedComponent"></component>
+        <keep-alive>
+          <component :is="selectedComponent"></component>
+        </keep-alive>
       </div>
     </div>
     <div class="layout-column-right">
@@ -35,7 +37,7 @@
 import CurrencyTab from "./../components/CurrencyTab";
 import FamilyRiskTab from "./../components/FamilyRiskTab";
 import Funds from "./../components/Funds";
-import {mapGetters} from 'vuex'
+import { mapGetters } from "vuex";
 
 export default {
   data() {
@@ -45,7 +47,7 @@ export default {
     };
   },
   computed: {
-    ...mapGetters(['selectedCurrency']),
+    ...mapGetters(["selectedCurrency", "selectedFamily"]),
     filteredAssets() {}
   },
   components: {
@@ -140,7 +142,7 @@ i.fas.fa-dollar-sign {
   color: #bdbdbd;
 }
 
-p#currentItem{
+p#currentItem {
   font-size: x-small;
 }
 </style>
