@@ -5,15 +5,15 @@
         <img :src="family.icon" :alt="family.name" width="20px">
         <span>{{family.id}}</span>
       </li>-->
-      <li @click='filterFunds("All")'>
+      <li @click="filterFunds('All')">
         <img src="./../assets/world.svg" width="20px">
         <span>All</span>
       </li>
-      <li @click='filterFunds("Equity")'>
+      <li @click="filterFunds('Equity')">
         <i class="fas fa-hard-hat equity"></i>
         <span>Equity</span>
       </li>
-      <li @click='filterFunds("Balanced")'>
+      <li @click="filterFunds('Balanced')">
         <i class="fas fa-hard-hat balanced"></i>
         <span>Balanced</span>
       </li>
@@ -23,7 +23,7 @@
 
 
 <script>
-import {mapGetters} from "vuex"
+import { mapGetters } from "vuex";
 
 export default {
   data() {
@@ -48,44 +48,59 @@ export default {
     };
   },
   computed: {
-    ...mapGetters(['funds','selectedCurrency'])
+    ...mapGetters(["funds", "selectedCurrency"])
   },
   methods: {
     filterFunds(currentFamily) {
       this.updateCurrentFamily(currentFamily);
 
-      if (this.checkIfbothAreFilteredByAll(currentFamily)) return ;
+      if (this.checkIfbothAreFilteredByAll(currentFamily)) return;
 
-      if( this.checkIfCurrentCurrencyIsAll(currentFamily))  return;
-      
-      if (currentFamily == "All") {
-        this.$store.commit("saveFiltered", this.funds);
-      } else {
-        let filteredAssets = this.funds.filter(fund => {
-          return fund.risk_family == currentFamily && fund.currency == this.selectedCurrency
-        });
-        this.$store.commit("saveFiltered", filteredAssets);
-      }
+      if (this.checkIfCurrentCurrencyIsAll(currentFamily)) return;
+
+      if (this.checkIFCurrentCurrencyIsNotAllAndFamilyIsAll(currentFamily))
+        return;
+
+      this.filterWhenBothAreNotAll(currentFamily);
     },
     updateCurrentFamily(family) {
       this.$store.commit("updateSelectedFamily", family);
     },
-    checkIfCurrentCurrencyIsAll(family){
-      if(this.selectedCurrency == 'All'){
-        let filteredAssets = this.funds.filter(fund => {
-          return fund.risk_family == family
-        });
-        this.$store.commit("saveFiltered", filteredAssets);
-        return true
-      }
-      return false
-    },
-    checkIfbothAreFilteredByAll(currentFamily){
-      if (currentFamily == "All" && this.selectedCurrency == 'All'){
-        this.$store.commit("saveFiltered", this.funds)
+    checkIfbothAreFilteredByAll(currentFamily) {
+      if (currentFamily == "All" && this.selectedCurrency == "All") {
+        this.$store.commit("saveFiltered", this.funds);
         return true;
       }
-      return false
+      return false;
+    },
+    checkIfCurrentCurrencyIsAll(family) {
+      if (this.selectedCurrency == "All") {
+        let filteredAssets = this.funds.filter(fund => {
+          return fund.risk_family == family;
+        });
+        this.$store.commit("saveFiltered", filteredAssets);
+        return true;
+      }
+      return false;
+    },
+    checkIFCurrentCurrencyIsNotAllAndFamilyIsAll(currentFamily) {
+      if (currentFamily == "All" && this.selectedCurrency != "All") {
+        let filteredAssets = this.funds.filter(fund => {
+          return fund.currency == this.selectedCurrency;
+        });
+        this.$store.commit("saveFiltered", filteredAssets);
+        return true;
+      }
+      return false;
+    },
+    filterWhenBothAreNotAll(currentFamily) {
+      let filteredAssets = this.funds.filter(fund => {
+        return (
+          fund.risk_family == currentFamily &&
+          fund.currency == this.selectedCurrency
+        );
+      });
+      this.$store.commit("saveFiltered", filteredAssets);
     }
   }
 };
@@ -116,6 +131,7 @@ li {
   align-items: flex-start;
   justify-content: space-around;
   width: 25%;
+  cursor: pointer;
 }
 
 span {

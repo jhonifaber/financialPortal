@@ -50,7 +50,7 @@ export default {
 
       if (this.checkIfCurrentFamilyIsAll(currentCurrency)) return;
 
-      if (currentCurrency == "All") {
+      if (currentCurrency == "All") {//TODO:fix
         this.$store.commit("saveFiltered", this.funds);
       } else {
         let filteredAssets = this.funds.filter(fund => {
@@ -111,6 +111,7 @@ li {
   align-items: flex-start;
   justify-content: space-around;
   width: 25%;
+  cursor: pointer;
 }
 
 span {

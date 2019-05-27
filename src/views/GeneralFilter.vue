@@ -47,8 +47,7 @@ export default {
     };
   },
   computed: {
-    ...mapGetters(["selectedCurrency", "selectedFamily"]),
-    filteredAssets() {}
+    ...mapGetters(["selectedCurrency", "selectedFamily"])
   },
   components: {
     CurrencyTab,
