@@ -1,7 +1,7 @@
 <template>
   <div class="asset-wrapper">
     <a class="asset-name">{{assetValue.name}}</a>
-    <a href="/information" class="asset-data">
+    <router-link to="/information" class="asset-data">
       <div class="asset-data-currency">
         <span class="type">
           <i id="aa" class="fas fa-dollar-sign"></i>
@@ -17,7 +17,7 @@
         </span>&nbsp;
         <span id="family-risk-value">{{assetValue.risk_family}}</span>
       </div>
-    </a>
+    </router-link>
   </div>
 </template>
 
@@ -70,7 +70,7 @@ export default {
   background-color: #02b5c4;
 }
 
-.asset-wrapper:hover a.asset-name {
+.asset-wrapper:hover .asset-name {
   background-color: #e0e0e0;
 }
 

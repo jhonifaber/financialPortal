@@ -28,23 +28,6 @@ import { mapGetters } from "vuex";
 export default {
   data() {
     return {
-      // families: [
-      //   {
-      //     name: "All Currencies",
-      //     id: "All",
-      //     icon: require("./../assets/world.svg")
-      //   },
-      //   {
-      //     name: "Equity",
-      //     id: "Equity",
-      //     icon: require("./../assets/european-flag.svg")
-      //   },
-      //   {
-      //     name: "Balanced",
-      //     id: "Balanced",
-      //     icon: require(<i class="fas fa-hard-hat balanced"></i>)
-      //   }
-      // ]
     };
   },
   computed: {
