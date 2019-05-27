@@ -13,9 +13,6 @@ export default {
     GeneralFilter,
     CurrencyTab
   }
-  // created() {
-  //   this.$store.dispatch("fetchFunds");
-  // }
 };
 </script>
 

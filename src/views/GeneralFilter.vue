@@ -6,18 +6,35 @@
       </div>
       <div class="layout-column-left buttons">
         <span>
-          <i class="fas fa-dollar-sign"></i>
-          <p @click="selectedComponent = 'CurrencyTab'" class="dynamic-component-button">Currency</p>
-        </span>
-        <p id="currentItem">{{selectedCurrency}}</p>
-        <span>
-          <i class="fas fa-hard-hat"></i>
+          <i
+            class="fas fa-dollar-sign"
+            :style="[selectedComponent == 'CurrencyTab' ? {'color':'#02b5c4'} : {'color':'#bdbdbd'}]"
+          ></i>
           <p
-            @click="selectedComponent = 'FamilyRiskTab'"
+            @click="selectedFilter('CurrencyTab')"
             class="dynamic-component-button"
+            :style="[selectedComponent == 'CurrencyTab' ? {'color':'#828282'} : {'color':'#bdbdbd'}]"
+          >Currency</p>
+        </span>
+        <p
+          id="currentItem"
+          :style="[selectedComponent == 'CurrencyTab' ? {'color':'#02b5c4'} : {'color':'#bdbdbd'}]"
+        >{{selectedCurrency}}</p>
+        <span>
+          <i
+            class="fas fa-hard-hat"
+            :style="[selectedComponent == 'FamilyRiskTab' ? {'color':'#02b5c4'} : {'color':'#bdbdbd'}]"
+          ></i>
+          <p
+            @click="selectedFilter('FamilyRiskTab')"
+            class="dynamic-component-button"
+            :style="[selectedComponent == 'FamilyRiskTab' ? {'color':'#828282'} : {'color':'#bdbdbd'}]"
           >Family Risk</p>
         </span>
-        <p id="currentItem">{{selectedFamily}}</p>
+        <p
+          id="currentItem"
+          :style="[selectedComponent == 'FamilyRiskTab' ? {'color':'#02b5c4'} : {'color':'#bdbdbd'}]"
+        >{{selectedFamily}}</p>
       </div>
     </div>
     <div class="layout-column-middle">
@@ -48,6 +65,12 @@ export default {
   },
   computed: {
     ...mapGetters(["selectedCurrency", "selectedFamily"])
+  },
+  methods: {
+    selectedFilter(filter) {
+      this.selectedComponent = filter;
+      this.$store.commit("saveSelectedFilter", filter);
+    }
   },
   components: {
     CurrencyTab,
@@ -142,7 +165,11 @@ i.fas.fa-dollar-sign {
 }
 
 p#currentItem {
-  font-size: x-small;
+  font-size: small;
+  display: flex;
+  justify-content: space-between;
+  position: relative;
+  bottom: 20px;
 }
 </style>
 

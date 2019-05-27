@@ -1,9 +1,9 @@
 <template>
   <div class="currency-tab-wrapper">
     <ul>
-      <li v-for="currency in currencies" :key="currency.id" @click="filterFunds(currency.id)">
+      <li v-for="currency in currencies" :key="currency.id" @click="filterFunds(currency.id)" >
         <img :src="currency.icon" :alt="currency.name" width="20px">
-        <span>{{currency.id}}</span>
+        <span :style='[selectedFilter == "CurrencyTab" && currency.id == selectedCurrency? {"color":"#02b5c4"} : {"color":"#828282"}]'>{{currency.id}}</span>
       </li>
     </ul>
   </div>
@@ -40,7 +40,7 @@ export default {
     };
   },
   computed: {
-    ...mapGetters(["funds", "selectedFamily"])
+    ...mapGetters(["funds", "selectedFamily",'selectedFilter', 'selectedCurrency'])
   },
   methods: {
     filterFunds(currentCurrency) {

@@ -9,7 +9,8 @@ export default new Vuex.Store({
     funds: [],
     filteredFunds: [],
     selectedCurrency: 'All',
-    selectedFamily: 'All'
+    selectedFamily: 'All',
+    selectedFilter:'CurrencyTab',
   },
   getters: {
     funds(state) {
@@ -23,6 +24,9 @@ export default new Vuex.Store({
     },
     selectedFamily(state) {
       return state.selectedFamily
+    },
+    selectedFilter(state){
+      return state.selectedFilter
     }
   },
   mutations: {
@@ -38,6 +42,9 @@ export default new Vuex.Store({
     },
     updateSelectedFamily(state, payload) {
       state.selectedFamily = payload
+    },
+    saveSelectedFilter(state, payload){
+      state.selectedFilter = payload
     }
   },
   actions: {

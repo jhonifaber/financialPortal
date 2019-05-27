@@ -1,21 +1,17 @@
 <template>
   <div class="family-tab-wrapper">
     <ul>
-      <!-- <li v-for="family in families" :key="family.id">
-        <img :src="family.icon" :alt="family.name" width="20px">
-        <span>{{family.id}}</span>
-      </li>-->
       <li @click="filterFunds('All')">
         <img src="./../assets/world.svg" width="20px">
-        <span>All</span>
+        <span :style='[selectedFilter == "FamilyRiskTab" && "All" == selectedFamily? {"color":"#02b5c4"} : {"color":"#828282"}]'>All</span>
       </li>
       <li @click="filterFunds('Equity')">
         <i class="fas fa-hard-hat equity"></i>
-        <span>Equity</span>
+        <span :style='[selectedFilter == "FamilyRiskTab" && "Equity" == selectedFamily? {"color":"#02b5c4"} : {"color":"#828282"}]'>Equity</span>
       </li>
       <li @click="filterFunds('Balanced')">
         <i class="fas fa-hard-hat balanced"></i>
-        <span>Balanced</span>
+        <span :style='[selectedFilter == "FamilyRiskTab" && "Balanced" == selectedFamily? {"color":"#02b5c4"} : {"color":"#828282"}]'>Balanced</span>
       </li>
     </ul>
   </div>
@@ -31,7 +27,7 @@ export default {
     };
   },
   computed: {
-    ...mapGetters(["funds", "selectedCurrency"])
+    ...mapGetters(["funds", "selectedCurrency",'selectedFamily','selectedFilter'])
   },
   methods: {
     filterFunds(currentFamily) {
