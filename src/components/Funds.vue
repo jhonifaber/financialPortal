@@ -2,6 +2,9 @@
   <div class="funds-wrapper">
     <h1>ETS FUNDS</h1>
     <hr>
+    <div id="nofunds" v-if="!filteredFunds.length">
+      <h3>No funds data</h3>
+    </div>
     <Asset v-for="asset in filteredFunds" :key="asset.id" :assetValue="asset"/>
   </div>
 </template>
@@ -38,6 +41,13 @@ hr {
   border-top: 1px solid #e0e0e0;
   width: 95%;
   margin-left: 20px;
+}
+
+div#nofunds {
+  display: flex;
+  position: relative;
+  left: 20px;
+  top: 40px;
 }
 </style>
 
