@@ -68,7 +68,7 @@ export default {
     },
     checkIfbothAreFilteredByAll(currentFamily) {
       if (currentFamily == "All" && this.selectedCurrency == "All") {
-        this.$store.commit("saveFiltered", this.funds);
+        this.commitMutation(this.funds);
         return true;
       }
       return false;
@@ -78,7 +78,7 @@ export default {
         let filteredAssets = this.funds.filter(fund => {
           return fund.risk_family == family;
         });
-        this.$store.commit("saveFiltered", filteredAssets);
+        this.commitMutation(filteredAssets);
         return true;
       }
       return false;
@@ -88,7 +88,7 @@ export default {
         let filteredAssets = this.funds.filter(fund => {
           return fund.currency == this.selectedCurrency;
         });
-        this.$store.commit("saveFiltered", filteredAssets);
+        this.commitMutation(filteredAssets);
         return true;
       }
       return false;
@@ -100,7 +100,10 @@ export default {
           fund.currency == this.selectedCurrency
         );
       });
-      this.$store.commit("saveFiltered", filteredAssets);
+      this.commitMutation(filteredAssets);
+    },
+    commitMutation(list) {
+      this.$store.commit("saveFiltered", list);
     }
   }
 };
