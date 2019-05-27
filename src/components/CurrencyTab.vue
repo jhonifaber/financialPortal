@@ -50,37 +50,52 @@ export default {
 
       if (this.checkIfCurrentFamilyIsAll(currentCurrency)) return;
 
-      if (currentCurrency == "All") {//TODO:fix
-        this.$store.commit("saveFiltered", this.funds);
-      } else {
-        let filteredAssets = this.funds.filter(fund => {
-          return (
-            fund.currency == currentCurrency &&
-            fund.risk_family == this.selectedFamily
-          );
-        });
-        this.$store.commit("saveFiltered", filteredAssets);
-      }
+      if (this.checkIFCurrentFamilyIsNotAllAndCurrencyIsAll(currentCurrency))
+        return;
+
+      this.filterWhenBothAreNotAll(currentCurrency);
     },
     updateCurrentCurrency(currency) {
       this.$store.commit("updateSelectedCurrency", currency);
+    },
+    checkIfBothAreFilteredByAll(currentCurrency) {
+      if (currentCurrency == "All" && this.selectedFamily == "All") {
+        this.commitMutation(this.funds);
+        return true;
+      }
+      return false;
     },
     checkIfCurrentFamilyIsAll(currentCurrency) {
       if (this.selectedFamily == "All") {
         let filteredAssets = this.funds.filter(fund => {
           return fund.currency == currentCurrency;
         });
-        this.$store.commit("saveFiltered", filteredAssets);
+        this.commitMutation(filteredAssets);
         return true;
       }
       return false;
     },
-    checkIfBothAreFilteredByAll(currentCurrency) {
-      if (currentCurrency == "All" && this.selectedFamily == "All") {
-        this.$store.commit("saveFiltered", this.funds);
+    checkIFCurrentFamilyIsNotAllAndCurrencyIsAll(currentCurrency) {
+      if (currentCurrency == "All" && this.selectedFamily != "All") {
+        let filteredAssets = this.funds.filter(fund => {
+          return fund.risk_family == this.selectedFamily;
+        });
+        this.commitMutation(filteredAssets);
         return true;
       }
       return false;
+    },
+    filterWhenBothAreNotAll(currentCurrency) {
+      let filteredAssets = this.funds.filter(fund => {
+        return (
+          fund.currency == currentCurrency &&
+          fund.risk_family == this.selectedFamily
+        );
+      });
+      this.commitMutation(filteredAssets);
+    },
+    commitMutation(list) {
+      this.$store.commit("saveFiltered", list);
     }
   }
 };
