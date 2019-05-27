@@ -2,7 +2,8 @@
   <div class="funds-wrapper">
     <h1>ETS FUNDS</h1>
     <hr>
-    <div id="nofunds" v-if="!filteredFunds.length">
+    <h5 v-if="showLoadingMessage"><img src="./../assets/spinner.gif" width="50px"></h5>
+    <div id="nofunds" v-if="!filteredFunds.length && !showLoadingMessage">
       <h3>No funds data</h3>
     </div>
     <Asset v-for="asset in filteredFunds" :key="asset.id" :assetValue="asset"/>
@@ -14,11 +15,21 @@ import Asset from "./Asset";
 import { mapGetters } from "vuex";
 
 export default {
+  data() {
+    return {
+      showLoadingMessage: false
+    };
+  },
   computed: {
     ...mapGetters(["filteredFunds"])
   },
   components: {
     Asset
+  },
+  async created() {
+    this.showLoadingMessage = true;
+    await this.$store.dispatch("fetchFunds");
+    this.showLoadingMessage = false;
   }
 };
 </script>
@@ -45,9 +56,12 @@ hr {
 
 div#nofunds {
   display: flex;
-  position: relative;
-  left: 20px;
-  top: 40px;
+  margin-left: 20px;
+  margin-top: 30px;
+}
+
+h5 {
+  margin-top: 20px;
 }
 </style>
 
