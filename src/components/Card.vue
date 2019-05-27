@@ -16,7 +16,12 @@
       <label>SECTOR</label>
       <p>No sector</p>
     </div>
-    <div class="pagination"></div>
+    <div class="pagination">
+      <!-- <p id="pagination-label-left">Caminac Camigroy A Acc</p> -->
+      <i class="fas fa-chevron-circle-left fa-2x"></i>
+      <i class="fas fa-chevron-circle-right fa-2x"></i>
+      <!-- <p id="pagination-label-right">Globsl stable quiality Found Bii Acc</p> -->
+    </div>
   </div>
 </template>
 
@@ -41,8 +46,36 @@ label {
 h3 {
   margin-bottom: 30px;
 }
+.pagination {
+  display: flex;
+  justify-content: center;
+  margin-top: 40px;
+}
+
+p#pagination-label-right,
+p#pagination-label-left {
+  font-size: small;
+  display: flex;
+  align-items: center;
+}
+
+p#pagination-label-right {
+  margin-left: 15px;
+}
+
+.fa-chevron-circle-left,
+p#pagination-label-left {
+  margin-right: 15px;
+}
 
 @media (max-width: 768px) {
+  .pagination {
+    display: flex;
+    justify-content: flex-end;
+    margin-right: 20px;
+    margin-top: 0;
+  }
+
   h3 {
     font-size: small;
     margin-bottom: 0;
@@ -56,10 +89,12 @@ h3 {
 
   label {
     margin-top: 15px;
+    font-size: xx-small;
   }
 
   .data {
     padding-top: 0;
+    padding-bottom: 0;
   }
 }
 </style>
