@@ -39,7 +39,7 @@ export default {
 }
 
 .information-header {
-  height: 15%;
+  height: 13%;
   width: 15%;
   padding-top: 40px;
 }
@@ -47,7 +47,7 @@ export default {
 .information-pack {
   display: flex;
   flex-direction: row;
-  height: 85%;
+  height: 87%;
 }
 
 .information-graph {
@@ -63,7 +63,7 @@ export default {
   width: 55%;
 }
 
-@media (max-width: 600px) {
+@media (max-width: 768px) {
   .information-pack {
     display: flex;
     flex-direction: column;
