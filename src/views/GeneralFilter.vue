@@ -197,6 +197,26 @@ p#currentItem {
   .layout-column-left.buttons {
     display: flex;
     flex-direction: row;
+    width: 100%;
+  }
+
+  p#currentItem {
+    position: relative;
+    top: 25px;
+    right: 100px;
+  }
+
+  span {
+    display: flex;
+    justify-content: space-evenly;
+    width: 100%;
+  }
+
+  .logo {
+    margin-bottom: 30px;
+    position: relative;
+    bottom: 0;
+    right: 120px;
   }
 }
 </style>
