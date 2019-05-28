@@ -6,7 +6,7 @@
       <label>CURRENCY</label>
       <p>EUR</p>
       <label>ISSUER</label>
-      <p>JP MORGAN AM</p>
+      <p>JP Morgan Am</p>
       <label>ISIN</label>
       <p>LI009645789</p>
       <label>REGION</label>
@@ -17,10 +17,14 @@
       <p>No sector</p>
     </div>
     <div class="pagination">
-      <!-- <p id="pagination-label-left">Caminac Camigroy A Acc</p> -->
-      <i class="fas fa-chevron-circle-left fa-2x"></i>
-      <i class="fas fa-chevron-circle-right fa-2x"></i>
-      <!-- <p id="pagination-label-right">Globsl stable quiality Found Bii Acc</p> -->
+      <div class="pagination-prev">
+        <!-- <p id="pagination-label-left">Caminac Camigroy Acc A</p> -->
+        <i class="fas fa-chevron-circle-left fa-2x"></i>
+      </div>
+      <div class="pagination-next">
+        <i class="fas fa-chevron-circle-right fa-2x"></i>
+        <!-- <p id="pagination-label-right">Globsl stable quiality Found Bii Acc</p> -->
+      </div>
     </div>
   </div>
 </template>
@@ -59,21 +63,45 @@ p#pagination-label-left {
   align-items: center;
 }
 
-p#pagination-label-right {
-  margin-left: 15px;
+.fa-chevron-circle-left {
+  margin-right: 15px;
 }
 
-.fa-chevron-circle-left,
 p#pagination-label-left {
-  margin-right: 15px;
+  padding-left: 160px;
+  /* TODO */
+  /* display: flex;
+  flex-wrap: wrap; */
+}
+
+p#pagination-label-right {
+  padding-right: 130px;
+  /* TODO */
+  /* display: flex;
+  flex-wrap: wrap; */
+}
+
+.pagination-prev,
+.pagination-next {
+  width: 50%;
+  display: flex;
+  justify-content: space-between;
 }
 
 @media (max-width: 768px) {
   .pagination {
-    display: flex;
-    justify-content: flex-end;
     margin-right: 20px;
     margin-top: 0;
+  }
+
+  .pagination-prev {
+    width: 85%;
+    display: flex;
+    justify-content: flex-end;
+  }
+
+  .pagination-next {
+    width: 15%;
   }
 
   h3 {

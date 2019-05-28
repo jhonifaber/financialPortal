@@ -1,7 +1,12 @@
 <template>
   <div class="information-wrapper">
     <div class="information-header">
-      <img :src="logo" width="100px">
+      <router-link to="/">
+        <img :src="logo" width="100px">
+      </router-link>
+      <!-- <router-link to="/">
+        <p id="returnButton"> Volver</p>
+      </router-link> -->
     </div>
     <div class="information-pack">
       <div class="information-graph">
@@ -81,6 +86,10 @@ export default {
   .information-header {
     width: 40%;
     padding-top: 10px;
+  }
+
+  #returnButton {
+    margin-top: 15px;
   }
 }
 </style>
