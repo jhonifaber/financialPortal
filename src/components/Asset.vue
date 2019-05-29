@@ -1,7 +1,11 @@
 <template>
   <div class="asset-wrapper">
     <a class="asset-name">{{assetValue.name}}</a>
-    <router-link to="/information" class="asset-data">
+    <router-link
+      :to="{ path : '/information/' + assetValue.id}"
+      class="asset-data"
+      @click.native="updateCurrentPage(assetValue.id)"
+    >
       <div class="asset-data-currency">
         <span class="type">
           <i id="aa" class="fas fa-dollar-sign"></i>
@@ -29,6 +33,11 @@ export default {
       currency_text: "CURRENCY",
       family_text: "FAMILY RISK"
     };
+  },
+  methods: {
+    updateCurrentPage(id) {
+      this.$store.commit("updateCurrentPage", id);
+    }
   }
 };
 </script>

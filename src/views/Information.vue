@@ -4,11 +4,14 @@
       <router-link to="/">
         <img :src="logo" width="100px">
       </router-link>
-      <!-- <router-link to="/">
-        <p id="returnButton"> Volver</p>
-      </router-link> -->
+      <h5 v-if="showLoadingMessage">
+        <img src="./../assets/spinner.gif" width="50px">
+      </h5>
+      <router-link to="/" class="router-link-back" v-if="!showLoadingMessage">
+        <p id="returnButton">Volver</p>
+      </router-link>
     </div>
-    <div class="information-pack">
+    <div class="information-pack" v-if="!showLoadingMessage">
       <div class="information-graph">
         <Graph/>
       </div>
@@ -27,12 +30,21 @@ import Graph from "./../components/Graph";
 export default {
   data() {
     return {
-      logo: require("./../assets/logo.png")
+      logo: require("./../assets/logo.png"),
+      showLoadingMessage: false
     };
   },
   components: {
     Graph,
     Card
+  },
+  async created() {
+    this.showLoadingMessage = true;
+    await this.$store.dispatch(
+      "fetchSpecificFundInformation",
+      this.$route.params.id
+    );
+    this.showLoadingMessage = false;
   }
 };
 </script>
@@ -68,6 +80,10 @@ export default {
   width: 55%;
 }
 
+.router-link-back {
+  display: none;
+}
+
 @media (max-width: 768px) {
   .information-pack {
     display: flex;
@@ -90,6 +106,10 @@ export default {
 
   #returnButton {
     margin-top: 15px;
+  }
+
+  .router-link-back {
+    display: initial;
   }
 }
 </style>

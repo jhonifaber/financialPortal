@@ -226,7 +226,7 @@ p#currentItem {
   }
 
   .layout-column-right {
-   height: 70%;
+    height: 70%;
   }
 }
 </style>

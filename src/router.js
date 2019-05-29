@@ -5,14 +5,15 @@ import GeneralFilter from './views/GeneralFilter.vue'
 
 Vue.use(Router)
 
-export default new Router({
+export const router = new Router({
   mode: 'history',
   base: process.env.BASE_URL,
   routes: [
-    { path: '/information', component: Information },
+    { path: '/information/:id', component: Information },
     { path: '/', component: GeneralFilter },
     {
       path: "/*", redirect: "/"
     }
   ]
 })
+

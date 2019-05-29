@@ -1,33 +1,68 @@
 <template>
   <div class="card-wrapper">
-    <div class="data">
+    <h5 v-if="showLoadingMessage">
+      <img src="./../assets/spinner.gif" width="50px">
+    </h5>
+    <div class="data" v-for="item in cardsData" :key="item.id">
       <label>NAME</label>
-      <h3>Jpmorgan Investment Funds - Global Macro Opportunities Fund A Acc</h3>
+      <h3>{{item.name}}</h3>
       <label>CURRENCY</label>
-      <p>EUR</p>
+      <p>{{item.currency.name}}</p>
       <label>ISSUER</label>
-      <p>JP Morgan Am</p>
+      <p>{{item.issuer.name}}</p>
       <label>ISIN</label>
-      <p>LI009645789</p>
+      <p>{{item.isin}}</p>
       <label>REGION</label>
-      <p>Global/Global/Global</p>
+      <p>?</p>
       <label>RISK FAMILY</label>
-      <p>Balanced / Absolute Return</p>
+      <p>?</p>
       <label>SECTOR</label>
-      <p>No sector</p>
+      <p>{{item.sector.name}}</p>
     </div>
     <div class="pagination">
-      <div class="pagination-prev">
-        <!-- <p id="pagination-label-left">Caminac Camigroy Acc A</p> -->
-        <i class="fas fa-chevron-circle-left fa-2x"></i>
-      </div>
-      <div class="pagination-next">
-        <i class="fas fa-chevron-circle-right fa-2x"></i>
-        <!-- <p id="pagination-label-right">Globsl stable quiality Found Bii Acc</p> -->
-      </div>
+      <a href="/information/47868">
+        <div class="pagination-prev">
+          <p id="pagination-label-left"></p>
+          <i class="fas fa-chevron-circle-left fa-2x"></i>
+        </div>
+      </a>
+      <a href="/information/47868">
+        <div class="pagination-next">
+          <i class="fas fa-chevron-circle-right fa-2x"></i>
+          <p id="pagination-label-right"></p>
+        </div>
+      </a>
     </div>
   </div>
 </template>
+
+<script>
+import { mapGetters } from "vuex";
+
+export default {
+  data() {
+    return {
+      showLoadingMessage: false
+    };
+  },
+  computed: {
+    ...mapGetters(["cardsData", "funds", "currentPage"])
+    // next_page() {
+    //   if (this.currentPage.index + 1 == this.funds.length) {
+    //     return this.funds[0].name;
+    //   }
+    //   return this.funds[this.currentPage.index + 1].name;
+    // },
+    // prev_page() {
+    //   if (this.currentPage.index == 0) {
+    //     return this.funds[this.funds.length - 1].name;
+    //   }
+    //   return this.funds[this.currentPage.index - 1].name;
+    // }
+  }
+};
+</script>
+
 
 <style scoped>
 .card-wrapper {
@@ -48,7 +83,7 @@ label {
 }
 
 h3 {
-  margin-bottom: 30px;
+  margin-bottom: 25px;
 }
 .pagination {
   display: flex;
@@ -58,7 +93,7 @@ h3 {
 
 p#pagination-label-right,
 p#pagination-label-left {
-  font-size: small;
+  font-size: x-small;
   display: flex;
   align-items: center;
 }
@@ -86,6 +121,11 @@ p#pagination-label-right {
   width: 50%;
   display: flex;
   justify-content: space-between;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
 }
 
 @media (max-width: 768px) {
@@ -123,6 +163,11 @@ p#pagination-label-right {
   .data {
     padding-top: 0;
     padding-bottom: 0;
+  }
+
+  p#pagination-label-right,
+  p#pagination-label-left {
+    display: none;
   }
 }
 </style>
