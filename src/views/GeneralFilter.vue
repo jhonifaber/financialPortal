@@ -188,6 +188,7 @@ p#currentItem {
   .layout-filters {
     display: flex;
     flex-direction: column;
+    height: 300px;
   }
 
   .layout-column-middle {
@@ -210,6 +211,7 @@ p#currentItem {
     display: flex;
     justify-content: space-evenly;
     width: 100%;
+    margin-left: 20px;
   }
 
   .logo {
@@ -217,6 +219,14 @@ p#currentItem {
     position: relative;
     bottom: 0;
     right: 120px;
+  }
+
+  img {
+    width: 80px;
+  }
+
+  .layout-column-right {
+   height: 70%;
   }
 }
 </style>

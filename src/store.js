@@ -10,7 +10,7 @@ export default new Vuex.Store({
     filteredFunds: [],
     selectedCurrency: 'All',
     selectedFamily: 'All',
-    selectedFilter:'CurrencyTab',
+    selectedFilter: 'CurrencyTab',
   },
   getters: {
     funds(state) {
@@ -25,7 +25,7 @@ export default new Vuex.Store({
     selectedFamily(state) {
       return state.selectedFamily
     },
-    selectedFilter(state){
+    selectedFilter(state) {
       return state.selectedFilter
     }
   },
@@ -43,8 +43,11 @@ export default new Vuex.Store({
     updateSelectedFamily(state, payload) {
       state.selectedFamily = payload
     },
-    saveSelectedFilter(state, payload){
+    saveSelectedFilter(state, payload) {
       state.selectedFilter = payload
+    },
+    saveFundData(state, payload){
+      // TODO: sabe fund data into funds array(push)
     }
   },
   actions: {
@@ -58,8 +61,18 @@ export default new Vuex.Store({
         data: {}
       })
       context.commit('saveFunds', response.data)
+    },
+    async fetchSpecificFundInformation(context, payload) {
+      const cardID = payload
+      const response = await axios.get(`http://jsonstub.com/etsfintech/symbols/${cardID}`, {
+        headers: {
+          'Content-Type': 'application/json',
+          'JsonStub-User-Key': '9facef2e-9583-4a83-9f08-c87159f1c113',
+          'JsonStub-Project-Key': '6ed070c1-b334-4612-8fa8-169c5e45baef'
+        },
+        data: {}
+      })
+      context.commit('saveFundData', response.data)
     }
-
-
   }
 })

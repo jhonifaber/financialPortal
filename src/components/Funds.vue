@@ -2,7 +2,9 @@
   <div class="funds-wrapper">
     <h1>ETS FUNDS</h1>
     <hr>
-    <h5 v-if="showLoadingMessage"><img src="./../assets/spinner.gif" width="50px"></h5>
+    <h5 v-if="showLoadingMessage">
+      <img src="./../assets/spinner.gif" width="50px">
+    </h5>
     <div id="nofunds" v-if="!filteredFunds.length && !showLoadingMessage">
       <h3>No funds data</h3>
     </div>
@@ -62,6 +64,23 @@ div#nofunds {
 
 h5 {
   margin-top: 20px;
+}
+
+@media (max-width: 768px) {
+  .funds-wrapper {
+    margin: 0;
+  }
+  h1 {
+    font-size: larger;
+    text-align: left;
+    /* margin-left: 20px; */
+    color: #02b5c4;
+    margin-top: 20px;
+  }
+
+  hr {
+    width: 88%;
+  }
 }
 </style>
 
