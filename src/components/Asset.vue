@@ -104,5 +104,33 @@ span.type {
 #family-risk-value {
   margin-left: 10px;
 }
+
+@media (max-width: 768px) {
+  .asset-wrapper {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .asset-data,
+  .asset-name {
+    width: 100%;
+  }
+
+  .asset-name {
+    border-top-left-radius: 15px;
+    border-top-right-radius: 15px;
+    border-bottom-left-radius: 0;
+    font-size: xx-small;
+    padding: 10px;
+  }
+
+  .asset-data {
+    border-bottom-left-radius: 15px;
+    border-bottom-right-radius: 15px;
+    border-top-right-radius: 0;
+    font-size: xx-small;
+    padding: 10px;
+  }
+}
 </style>
 
