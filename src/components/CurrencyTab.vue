@@ -19,22 +19,22 @@ export default {
         {
           name: "All Currencies",
           id: "All",
-          icon: require("./../assets/world.svg")
+          icon: require("./../assets/icons/world.svg")
         },
         {
           name: "European flag",
           id: "EUR",
-          icon: require("./../assets/european-flag.svg")
+          icon: require("./../assets/icons/european-flag.svg")
         },
         {
           name: "Japanese flag",
           id: "JPY",
-          icon: require("./../assets/japan-flag.png")
+          icon: require("./../assets/icons/japan-flag.png")
         },
         {
           name: "American flag",
           id: "USD",
-          icon: require("./../assets/united-states-flag.svg")
+          icon: require("./../assets/icons/united-states-flag.svg")
         }
       ]
     };

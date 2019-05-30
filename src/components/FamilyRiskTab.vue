@@ -2,7 +2,7 @@
   <div class="family-tab-wrapper">
     <ul>
       <li @click="filterFunds('All')">
-        <img src="./../assets/world.svg" width="20px">
+        <img src="./../assets/icons/world.svg" width="20px">
         <span :style='[selectedFilter == "FamilyRiskTab" && "All" == selectedFamily? {"color":"#02b5c4"} : {"color":"#828282"}]'>All</span>
       </li>
       <li @click="filterFunds('Equity')">

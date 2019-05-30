@@ -73,7 +73,7 @@ export default new Vuex.Store({
   actions: {
     async fetchFunds(context) {
 
-      const response = await axios.get("https://my-json-server.typicode.com/jhonatanfaber/financialPortal/symbols", {
+      const response = await axios.get("http://jsonstub.com/etsfintech/symbols", {
         headers: {
           'Content-Type': 'application/json',
           'JsonStub-User-Key': '9facef2e-9583-4a83-9f08-c87159f1c113',
@@ -85,7 +85,7 @@ export default new Vuex.Store({
     },
     async fetchSpecificFundInformation(context, payload) {
       const cardID = payload
-      const response = await axios.get(`https://my-json-server.typicode.com/jhonatanfaber/financialPortal/symbol/${cardID}`, {
+      const response = await axios.get(`http://jsonstub.com/etsfintech/symbols/${cardID}`, {
         headers: {
           'Content-Type': 'application/json',
           'JsonStub-User-Key': '9facef2e-9583-4a83-9f08-c87159f1c113',
