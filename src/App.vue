@@ -12,6 +12,9 @@ export default {
   components: {
     GeneralFilter,
     CurrencyTab
+  },
+  created(){
+    this.$store.dispatch('loadDefaultVariables')
   }
 };
 </script>

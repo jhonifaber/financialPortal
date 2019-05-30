@@ -16,7 +16,7 @@
         <Graph/>
       </div>
       <div class="information-card">
-        <Card/>
+        <Card :funds='funds'/>
       </div>
     </div>
   </div>
@@ -26,6 +26,7 @@
 <script>
 import Card from "./../components/Card";
 import Graph from "./../components/Graph";
+import { mapGetters } from 'vuex';
 
 export default {
   data() {
@@ -33,6 +34,10 @@ export default {
       logo: require("./../assets/logo.png"),
       showLoadingMessage: false
     };
+  },
+  computed : {
+    ...mapGetters(['funds'])
+
   },
   components: {
     Graph,
@@ -44,6 +49,8 @@ export default {
       "fetchSpecificFundInformation",
       this.$route.params.id
     );
+    await this.$store.dispatch("fetchFunds");
+
     this.showLoadingMessage = false;
   }
 };
@@ -72,6 +79,8 @@ export default {
   background-color: #02b4c4; /* For browsers that do not support gradients */
   background-image: linear-gradient(to left, #02b4c4, #330166);
   width: 45%;
+  display: flex;
+  align-items: center;
 }
 
 .information-card {
@@ -92,6 +101,8 @@ export default {
   .information-graph {
     height: 45%;
     width: 100%;
+    display: flex;
+    align-content: unset;
   }
 
   .information-card {

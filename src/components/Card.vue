@@ -13,23 +13,23 @@
       <label>ISIN</label>
       <p>{{item.isin}}</p>
       <label>REGION</label>
-      <p>?</p>
+      <p>{{item.region.name}}</p>
       <label>RISK FAMILY</label>
-      <p>?</p>
+      <p>{{item.risk_family.name}}</p>
       <label>SECTOR</label>
       <p>{{item.sector.name}}</p>
     </div>
     <div class="pagination">
-      <a href="/information/47868">
+      <a :href="'/information/' + prev_page.id" @click="updateCurrentPage(prev_page.id)">
         <div class="pagination-prev">
-          <p id="pagination-label-left"></p>
+          <p id="pagination-label-left">{{prev_page.name}}</p>
           <i class="fas fa-chevron-circle-left fa-2x"></i>
         </div>
       </a>
-      <a href="/information/47868">
+      <a :href="'/information/' + next_page.id" @click="updateCurrentPage(next_page.id)">
         <div class="pagination-next">
           <i class="fas fa-chevron-circle-right fa-2x"></i>
-          <p id="pagination-label-right"></p>
+          <p id="pagination-label-right">{{next_page.name}}</p>
         </div>
       </a>
     </div>
@@ -40,25 +40,34 @@
 import { mapGetters } from "vuex";
 
 export default {
+  props: ["funds"],
   data() {
     return {
       showLoadingMessage: false
     };
   },
   computed: {
-    ...mapGetters(["cardsData", "funds", "currentPage"])
-    // next_page() {
-    //   if (this.currentPage.index + 1 == this.funds.length) {
-    //     return this.funds[0].name;
-    //   }
-    //   return this.funds[this.currentPage.index + 1].name;
-    // },
-    // prev_page() {
-    //   if (this.currentPage.index == 0) {
-    //     return this.funds[this.funds.length - 1].name;
-    //   }
-    //   return this.funds[this.currentPage.index - 1].name;
-    // }
+    ...mapGetters(["cardsData", "currentPage"]),
+    next_page() {
+      if (this.currentPage.index + 1 == this.funds.length) {
+        return this.funds[0].name;
+      }
+      return this.funds[this.currentPage.index + 1];
+    },
+    prev_page() {
+      if (this.currentPage.index == 0) {
+        return this.funds[this.funds.length - 1].name;
+      }
+      return this.funds[this.currentPage.index - 1];
+    }
+  },
+  methods: {
+    updateCurrentPage(id) {
+      console.log("LLEGa");
+      console.log(id);
+
+      this.$store.commit("updateCurrentPage", id);
+    }
   }
 };
 </script>
@@ -118,7 +127,7 @@ p#pagination-label-right {
 
 .pagination-prev,
 .pagination-next {
-  width: 50%;
+  /* width: 50%; */
   display: flex;
   justify-content: space-between;
 }
@@ -132,6 +141,8 @@ a {
   .pagination {
     margin-right: 20px;
     margin-top: 0;
+    display: flex;
+    justify-content: flex-end;
   }
 
   .pagination-prev {

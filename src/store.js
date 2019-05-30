@@ -12,7 +12,7 @@ export default new Vuex.Store({
     selectedFamily: 'All',
     selectedFilter: 'CurrencyTab',
     cardsData: [],
-    currentPage: ''
+    currentPage: {}
   },
   getters: {
     funds(state) {
@@ -59,11 +59,15 @@ export default new Vuex.Store({
     },
     updateCurrentPage(state, payload) {
       let index = state.funds.findIndex(element => element.id == payload)
-        let cardInfo = {
-          index : index,
-          id : payload
-        }
+      let cardInfo = {
+        index: index,
+        id: payload
+      }
+      localStorage.setItem('currentPage', JSON.stringify(cardInfo));
       state.currentPage = cardInfo
+    },
+    loadDefaultVariables(state, payload) {
+      state.currentPage = payload
     }
   },
   actions: {
@@ -91,6 +95,10 @@ export default new Vuex.Store({
       })
       console.log(response.data);
       context.commit('saveFundData', response.data)
+    },
+    loadDefaultVariables(context) {
+      const current_page = JSON.parse(localStorage.getItem("currentPage"));
+      context.commit('loadDefaultVariables', current_page)
     }
   }
 })
