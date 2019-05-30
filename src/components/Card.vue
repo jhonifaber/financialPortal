@@ -22,14 +22,14 @@
     <div class="pagination">
       <a :href="'/information/' + prev_page.id" @click="updateCurrentPage(prev_page.id)">
         <div class="pagination-prev">
-          <p id="pagination-label-left">{{prev_page.name}}</p>
+          <!-- <p id="pagination-label-left">{{prev_page.name}}</p> -->
           <i class="fas fa-chevron-circle-left fa-2x"></i>
         </div>
       </a>
       <a :href="'/information/' + next_page.id" @click="updateCurrentPage(next_page.id)">
         <div class="pagination-next">
           <i class="fas fa-chevron-circle-right fa-2x"></i>
-          <p id="pagination-label-right">{{next_page.name}}</p>
+          <!-- <p id="pagination-label-right">{{next_page.name}}</p> -->
         </div>
       </a>
     </div>
