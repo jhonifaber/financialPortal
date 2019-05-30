@@ -50,8 +50,7 @@ export default {
       "fetchSpecificFundInformation",
       this.$route.params.id
     );
-    await this.$store.dispatch("fetchFunds");
-
+    // await this.$store.dispatch("fetchFunds");
     this.showLoadingMessage = false;
   }
 };

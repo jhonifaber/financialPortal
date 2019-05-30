@@ -1,7 +1,6 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
-import axios from 'axios'
-
+import { BASE_URL } from "./axios/axios.js"
 Vue.use(Vuex)
 
 export default new Vuex.Store({
@@ -72,27 +71,12 @@ export default new Vuex.Store({
   },
   actions: {
     async fetchFunds(context) {
-
-      const response = await axios.get("http://jsonstub.com/etsfintech/symbols", {
-        headers: {
-          'Content-Type': 'application/json',
-          'JsonStub-User-Key': '9facef2e-9583-4a83-9f08-c87159f1c113',
-          'JsonStub-Project-Key': '6ed070c1-b334-4612-8fa8-169c5e45baef'
-        },
-        data: {}
-      })
+      const response = await BASE_URL.get("/symbols")
       context.commit('saveFunds', response.data)
     },
     async fetchSpecificFundInformation(context, payload) {
       const cardID = payload
-      const response = await axios.get(`http://jsonstub.com/etsfintech/symbols/${cardID}`, {
-        headers: {
-          'Content-Type': 'application/json',
-          'JsonStub-User-Key': '9facef2e-9583-4a83-9f08-c87159f1c113',
-          'JsonStub-Project-Key': '6ed070c1-b334-4612-8fa8-169c5e45baef'
-        },
-        data: {}
-      })
+      const response = await BASE_URL.get(`/symbols/${cardID}`)
       context.commit('saveFundData', response.data)
     },
     loadDefaultVariables(context) {

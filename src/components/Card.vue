@@ -63,9 +63,6 @@ export default {
   },
   methods: {
     updateCurrentPage(id) {
-      console.log("LLEGa");
-      console.log(id);
-
       this.$store.commit("updateCurrentPage", id);
     }
   }

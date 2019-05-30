@@ -56,10 +56,11 @@ export default {
   border-bottom-left-radius: 15px;
   background-color: #f2f2f2;
   color: #4f4f4f;
-  padding: 15px;
+  padding: 17px;
   width: 50%;
   text-align: left;
   font-weight: bold;
+  font-size: 10px;
 }
 
 .asset-data {
@@ -70,9 +71,10 @@ export default {
   border-bottom-right-radius: 15px;
   background-color: #f2f2f2;
   color: #4f4f4f;
-  padding: 15px;
+  padding: 17px;
   width: 50%;
   justify-content: space-between;
+  font-size: 10px;
 }
 
 .asset-wrapper:hover .asset-data {
