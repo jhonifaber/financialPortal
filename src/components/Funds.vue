@@ -8,7 +8,7 @@
     <div id="nofunds" v-if="!filteredFunds.length && !showLoadingMessage">
       <h3>No funds data</h3>
     </div>
-    <Asset v-for="asset in filteredFunds" :key="asset.id" :assetValue="asset"/>
+    <Asset v-for="asset in filtered" :key="asset.id" :assetValue="asset"/>
   </div>
 </template>
 
@@ -19,7 +19,8 @@ import { mapGetters } from "vuex";
 export default {
   data() {
     return {
-      showLoadingMessage: false
+      showLoadingMessage: false,
+      filtered : []
     };
   },
   computed: {
@@ -32,6 +33,7 @@ export default {
     this.showLoadingMessage = true;
     await this.$store.dispatch("fetchFunds");
     this.showLoadingMessage = false;
+    this.filtered = this.filteredFunds
   }
 };
 </script>
