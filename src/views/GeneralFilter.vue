@@ -62,7 +62,8 @@ export default {
   data() {
     return {
       selectedComponent: "CurrencyTab",
-      logo: require("./../assets/logo.png")
+      logo: require("./../assets/logo.png"),
+      showLoading: 'false'
     };
   },
   computed: {
