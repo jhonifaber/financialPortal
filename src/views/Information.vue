@@ -8,7 +8,9 @@
         <img src="./../assets/spinner.gif" width="50px">
       </h5>
       <router-link to="/" class="router-link-back" v-if="!showLoadingMessage">
-        <p id="returnButton">Volver</p>
+        <p id="returnButton">
+          <i class="fas fa-chevron-left"></i>Volver
+        </p>
       </router-link>
     </div>
     <div class="information-pack" v-if="!showLoadingMessage">
@@ -16,7 +18,7 @@
         <Graph/>
       </div>
       <div class="information-card">
-        <Card :funds='funds'/>
+        <Card :funds="funds"/>
       </div>
     </div>
   </div>
@@ -26,7 +28,7 @@
 <script>
 import Card from "./../components/Card";
 import Graph from "./../components/Graph";
-import { mapGetters } from 'vuex';
+import { mapGetters } from "vuex";
 
 export default {
   data() {
@@ -35,9 +37,8 @@ export default {
       showLoadingMessage: false
     };
   },
-  computed : {
-    ...mapGetters(['funds'])
-
+  computed: {
+    ...mapGetters(["funds"])
   },
   components: {
     Graph,
@@ -117,10 +118,21 @@ export default {
 
   #returnButton {
     margin-top: 15px;
+    color: gray;
+    font-size: 15px;
   }
 
   .router-link-back {
     display: initial;
+    position: relative;
+    bottom: 12px;
+    text-decoration: none;
+  }
+
+  .fa-chevron-left {
+    color: #02b4c4;
+    margin-right: 5px;
+    font-size: 12px;
   }
 }
 </style>
