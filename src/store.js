@@ -93,7 +93,6 @@ export default new Vuex.Store({
         },
         data: {}
       })
-      console.log(response.data);
       context.commit('saveFundData', response.data)
     },
     loadDefaultVariables(context) {
